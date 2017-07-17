@@ -1,4 +1,4 @@
-# 3DEC Scripts for Stability Assessment 
+# 3DEC Scripts for Stability Assessment of Masonry Structures
 
 One Paragraph of project description goes here
 
