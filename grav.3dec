@@ -1,0 +1,11 @@
+gravity 0 0 -9.81
+save gravity
+
+damp auto
+
+solve time 1
+
+;plot max unbalanced force against time
+pl hist 3 v 1 ;against time
+
+save bc_grav

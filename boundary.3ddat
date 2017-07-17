@@ -1,0 +1,41 @@
+; units m, kg/m^3, N, Pa, m/s^2
+
+
+;set material properties
+
+;block
+;prop mat=1 dens=2300 ;stone
+prop mat=1 dens=1220.5 ;3D printed block
+
+;joint stiffness - Pa/m
+def edge_length
+   edge_length = 0.5*span*Pi/voussoir
+end
+
+def E
+   E = 36e9 ;elastic modulus (Pa)
+end
+
+def G
+   G = 15e9 ;shear modulus (Pa)
+end
+
+def j_normal
+   j_normal = E/edge_length
+end
+
+def j_shear
+   j_shear = G/edge_length
+end
+
+prop jmat 3 jkn @j_normal jks @j_shear jfric 43
+
+
+;assign material properties
+change mat=1
+change jmat=3
+
+hide reg @base_reg
+
+;save the model with applied boundary conditions as a saved state
+save bc

@@ -1,0 +1,42 @@
+gravity 0 0 -9.81
+save gravity
+
+damp auto
+
+;set up histories
+
+cycle 1
+hist time
+hist unbal
+hist nf_sum @sup_face_pos_x @sup_face_pos_y @sup_face_pos_z
+hist sf_sum @sup_face_pos_x @sup_face_pos_y @sup_face_pos_z
+
+; fish version of nfsum and sfsum
+def get_contact(v)
+  ci = c_near(v)
+end
+@get_contact( (@sup_face_pos_x, @sup_face_pos_y, @sup_face_pos_z) )
+
+def nf_sum2
+  sf_sum_ = vector(0,0,0)
+  nf_sum_ = 0.0
+  local cxi = c_cx(ci)
+  loop while cxi # 0
+    sf_sum_ = sf_sum_ + cx_sforce(cxi)
+    nf_sum_ = nf_sum_ + cx_nforce(cxi)
+    cxi = cx_next(cxi)
+  end_loop
+  nf_sum2 = nf_sum_
+  sf_sum2 = mag(sf_sum_)
+end
+
+hist @nf_sum2
+hist @sf_sum2
+
+solve time 1
+
+;plot max unbalanced force against time
+pl hist 3 v 1 ;against time
+
+save bc_grav
+list @sf_sum2
