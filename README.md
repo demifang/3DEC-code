@@ -1,87 +1,40 @@
 # 3DEC Scripts for Stability Assessment of Masonry Structures
 
-One Paragraph of project description goes here
+Scripts to model a semicircular unreinforced masonry arch under gravitational acceleration. Originally written for and run on *3DEC 5.0* (Itasca Consulting Group, Inc.). Do not use without crediting Demi Fang.
 
-## Getting Started
+## Using the Scripts
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+Installation of 3DEC (http://www.itascacg.com/software/3dec).
 
-```
-Give examples
-```
+### Running the Scripts in *3DEC*
 
-### Installing
+Make a new *3DEC* project.
 
-A step by step series of examples that tell you have to get a development env running
+Download the .3dec and .3ddat files in the repo, save where desired (recommended same location as *3DEC* project), and add them to the project.
 
-Say what the step will be
+First, run 0_2_arch.3dec. This script sets up the geometry for a semicircular arch with a fixed base. It also records the support faces. See comments within the script for more details.
 
-```
-Give the example
-```
+Next, run boundary.3ddat. This script defines and assigns the material properties of the blocks and the joints between blocks. It also hides the fixed base block and saves the model’s state into the saved state bc.3dsav.
 
-And repeat
+The remaining scripts, grav.3dec and grav_normal_and_shear.3dec, are identical with the exception that the latter contains extra code for recording the normal and shear force at the support faces (lines 6-34). Run either script to apply gravitational acceleration to the arch. It should be stable.
 
-```
-until finished
-```
+For an unstable arch, repeat the above steps but with 0_106_arch.3dec instead of 0_2_arch.3dec.
 
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Not currently accepting contributions. To ask questions or report problems, contact Demi Fang.
 
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Demi Fang** - *Initial work* - senior thesis at Princeton University, 2017 - “Assessing the Stability of Unreinforced Masonry Arches and Vaults: A Comparison of Analytical and Numerical Strategies”
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+Created with the help of Anjali Mehrohtra, Rebecca Napolitano, and Jim Hazzard (Itasca). Thanks [Spencer](https://github.com/839083) for helping me set up my first repo!

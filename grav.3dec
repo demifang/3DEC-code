@@ -3,9 +3,15 @@ save gravity
 
 damp auto
 
+; set up histories
+
+cycle 1
+hist time
+hist unbal
+
 solve time 1
 
 ;plot max unbalanced force against time
-pl hist 3 v 1 ;against time
+pl hist 2 v 1
 
 save bc_grav
